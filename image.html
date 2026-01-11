@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Drishti Dynamics | Image Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+
+    <nav class="navbar nav-glass fixed-top px-4">
+        <span class="navbar-brand fw-bold" style="letter-spacing:1px;">
+            <a href="index.html">Drishti Dynamics</a>
+        </span>
+        <div>
+            <a href="text.html" class="nav-link d-inline text-white mx-2">Text</a>
+            <a href="image.html" class="nav-link d-inline text-white mx-2"
+               style="color:#db4eff;font-weight:bold;">Image</a>
+            <a href="video.html" class="nav-link d-inline text-white mx-2">Video</a>
+        </div>
+    </nav>
+
+    <section class="hero text-center" style="padding-top:120px;padding-bottom:60px;position:relative;z-index:1;">
+        <div class="icon-circle shadow-glow-magenta mb-4 mx-auto"
+             style="width:80px;height:80px;background:rgba(219,78,255,.1);
+             border:2px solid #db4eff;border-radius:50%;
+             display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-image" style="color:#db4eff;font-size:2rem;"></i>
+        </div>
+
+        <h1 class="display-4 fw-bold text-white">
+            Image <span style="color:#db4eff;text-shadow:0 0 15px rgba(219,78,255,.5);">Spam</span> Analyzer
+        </h1>
+
+        <p class="text mx-auto fw-bold" style="max-width:600px;color:#a0a0a0;">
+            Neural visual analysis for malicious pattern and synthetic content detection
+        </p>
+    </section>
+
+    <div class="container main-area">
+        <div class="card-glass magenta-main-box shadow-lg">
+
+            <div class="upload-area mb-4 text-center py-4" id="imageUploadBox">
+                <i class="fas fa-cloud-upload-alt mb-2" style="font-size:2.8rem;color:#db4eff;"></i>
+                <p class="m-0 text-white-50 fw-light">
+                    Drop your image here or <span class="text-magenta">click to browse</span>
+                </p>
+                <input type="file" id="imageInput" accept="image/*" hidden>
+            </div>
+
+            <div id="imageFileName" class="text-center small text-info mb-3 italic"></div>
+
+            <!-- ✅ FIX: ID restored -->
+            <div class="d-flex justify-content-start">
+                <button id="imageAnalyzeBtn" class="btn-magenta shadow-magenta">
+                    <i class="fas fa-scan me-2"></i>ANALYZE IMAGE
+                </button>
+            </div>
+
+            <div class="progress-box mt-4" id="imageProgressBox" style="display:none;">
+                <div class="text-center">
+                    <span class="spinner-border spinner-border-sm text-info me-2"></span>
+                    <span class="text-light letter-spacing-1">Neural Processing...</span>
+                </div>
+            </div>
+
+            <!-- RESULT CARD -->
+            <div id="resultCardimage" class="result-card d-none">
+
+                <div class="result-header d-flex justify-content-between align-items-center mb-3
+                            border-bottom border-secondary pb-2">
+                    <h4 id="resultTitle" class="m-0 fw-bold text-success">Scan Results</h4>
+                    <span id="resultTag" class="tag safe">Safe Content</span>
+                </div>
+
+                <p class="small text-white-50">
+                    Confidence Score:
+                    <b id="confidenceScore" class="text-success">--</b>
+                </p>
+
+                <!-- ✅ FIX: Explanation container added -->
+                <p id="aiExplanation" class="small text-white-50 mt-3"></p>
+
+                <div class="bar mb-3">
+                    <label class="small text-white-50">Spam Probability</label>
+                    <div class="bar-bg">
+                        <div id="SpamBar" class="green-progress" style="width:0%;"></div>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <label class="small text-white-50">Phishing Probability</label>
+                    <div class="bar-bg">
+                        <div id="PhishBar" class="green-progress" style="width:0%;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2025 Drishti Dynamics
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="js/three-bg.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/image-ai.js"></script>
+</body>
+</html>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row g-4 mt-4">
+            <div class="col-md-4">
+                <div class="card glass-card magenta-theme h-100 shadow-lg"
+                    style="border-radius: 25px; border: 1px solid rgba(219, 78, 255, 0.2); background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); position: relative;">
+                    <div class="card-badge"
+                        style="background: #db4eff; color: white; padding: 2px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; position: absolute; top: 15px; right: 15px;">
+                        SECURE</div>
+                    <div class="card-body text-center p-4">
+                        <div class="display-6 mb-3 mt-2">🛡️</div>
+                        <h5 class="card-title fw-bold text-white mb-4">Deep Visual Audit</h5>
+                        <ul class="list-unstyled text-start px-2 mb-4">
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-eye text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+                                <span class="text-white-50"><b class="text-white">Hidden Data:</b> AI scans images for
+                                    malicious links and hidden metadata.</span>
+                            </li>
+                            <li class="d-flex align-items-start">
+                                <i class="fas fa-user-shield text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+                                <span class="text-white-50"><b class="text-white">Privacy First:</b> Images are
+                                    processed locally and never stored.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card glass-card magenta-theme h-100 shadow-lg"
+                    style="border-radius: 25px; border: 1px solid rgba(219, 78, 255, 0.2); background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); position: relative;">
+                    <div class="card-badge"
+                        style="background: #db4eff; color: white; padding: 2px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; position: absolute; top: 15px; right: 15px;">
+                        FAST</div>
+                    <div class="card-body text-center p-4">
+                        <div class="display-6 mb-3 mt-2">⚡</div>
+                        <h5 class="card-title fw-bold text-white mb-4">Real-time Scan</h5>
+                        <ul class="list-unstyled text-start px-2 mb-4">
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-bolt text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+                                <span class="text-white-50"><b class="text-white">Rapid Results:</b> High-resolution
+                                    images scanned in milliseconds.</span>
+                            </li>
+                            <li class="d-flex align-items-start">
+                                <i class="fas fa-chevron-circle-up text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+                                <span class="text-white-50"><b class="text-white">Auto-Verdict:</b> Immediate alerts for
+                                    phishing or spam threats.</span>
+                            </li>
+                        </ul>
+                        <a href="#imageUploadBox" class="text-magenta text-decoration-none fw-bold small">UPLOAD IMAGE
+                            <i class="fas fa-chevron-up ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card glass-card magenta-theme h-100 shadow-lg"
+                    style="border-radius: 25px; border: 1px solid rgba(219, 78, 255, 0.2); background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); position: relative;">
+                    <div class="card-badge"
+                        style="background: #db4eff; color: white; padding: 2px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; position: absolute; top: 15px; right: 15px;">
+                        SMART</div>
+                    <div class="card-body text-center p-4">
+                        <div class="display-6 mb-3 mt-2">🧠</div>
+                        <h5 class="card-title fw-bold text-white mb-4">Pattern Match</h5>
+                        <ul class="list-unstyled text-start px-2 mb-4">
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-brain text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+                                <span class="text-white-50"><b class="text-white">Visual Patterns:</b> AI identifies
+                                    cues used in fraudulent images.</span>
+                            </li>
+                            <li class="d-flex align-items-start">
+                                <i class="fas fa-microchip text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+                                <span class="text-white-50"><b class="text-white">Neural Learning:</b> Evolving system
+                                    to detect unknown threats.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="card-glass p-5 mx-auto shadow-lg"
+            style="max-width: 1150px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(15px);">
+            <div class="row align-items-center">
+
+                <div class="col-lg-7 pe-lg-5">
+                    <div class="badge-custom mb-3"
+                        style="background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); padding: 4px 12px; border-radius: 50px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block;">
+                        <i class="fas fa-shield-alt me-1"></i> Smart Protection
+                    </div>
+
+                    <h2 class="display-6 fw-bold text-white mb-3">Beyond Pixels</h2>
+                    <p class="text-white-50 mb-4" style="line-height: 1.6;">
+                        Traditional scanners only look at file names. <b>Drishti Dynamics</b> uses <b>Neural Computer
+                            Vision</b> to scan the actual content of an image, detecting hidden fraudulent patterns and
+                        fake brand logos.
+                    </p>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <small class="text-white-50 d-block"><i class="fas fa-microchip text-cyan me-2"></i>Visual
+                                Intent Mapping</small>
+                            <small class="text-white-50 d-block"><i class="fas fa-expand text-cyan me-2"></i>OCR
+                                Metadata Scan</small>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-white-50 d-block"><i class="fas fa-shield-alt text-cyan me-2"></i>Fake
+                                Logo Detection</small>
+                            <small class="text-white-50 d-block"><i class="fas fa-check-circle text-cyan me-2"></i>Zero
+                                Image Storage</small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 style-box h-100"
+                                style="background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                                <h6 class="text-info small fw-bold mb-2">Report Threat</h6>
+                                <ul class="list-unstyled mb-0" style="font-size: 0.85rem;">
+                                    <li class="mb-1">
+                                        <a href="https://cybercrime.gov.in" target="_blank"
+                                            class="text-white-50 text-decoration-none">
+                                            Cyber Portal <i class="fas fa-external-link-alt ms-1"
+                                                style="font-size: 14px;"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://sancharsaathi.gov.in" target="_blank"
+                                            class="text-white-50 text-decoration-none">
+                                            Sanchar Saathi <i class="fas fa-external-link-alt ms-1"
+                                                style="font-size: 14px;"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 style-box h-100"
+                                style="background: rgba(219, 78, 255, 0.05); border-radius: 15px; border: 1px solid rgba(219, 78, 255, 0.1);">
+                                <h6 class="small fw-bold mb-1" style="color: #db4eff;">National Helpline</h6>
+                                <p class="text-white mb-0 fw-bold" style="font-size: 1.2rem;">1930</p>
+                                <span class="text-white-50" style="font-size: 0.85rem;">Instant Cyber Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 mt-5 mt-lg-0 text-center">
+                    <div class="ai-node-container"
+                        style="min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div class="node-map">
+                            <div class="central-node">
+                                <i class="fas fa-microchip"></i>
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="s-node sn1"><i class="fas fa-link"></i></div>
+                            <div class="s-node sn2"><i class="fas fa-shield-alt"></i></div>
+                            <div class="s-node sn3"><i class="fas fa-code-branch"></i></div>
+                            <div class="s-node sn4"><i class="fas fa-lock"></i></div>
+                            <div class="line l1"></div>
+                            <div class="line l2"></div>
+                            <div class="line l3"></div>
+                            <div class="line l4"></div>
+                        </div>
+
+                        <div class="mt-4">
+                            <div
+                                class="d-inline-flex align-items-center bg-dark-soft px-3 py-1 rounded-pill border-glow">
+                                <span class="dot-online me-2"></span>
+                                <small class="text-white-50" style="font-size: 13px; letter-spacing: 1px;">SEMANTIC
+                                    ENGINE ACTIVE</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <img src="img/Logo.jpeg" class="footer-logo">
+      <h3 class="footer-heading">Drishti Dynamics</h3>
+      <p>AI-powered cybersecurity to protect digital communication across text, images, and video.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Team</h3>
+      <ul>
+        <li>Kartik Yamsanwar (Leader)</li>
+        <li>Parmanand Mahajan</li>
+        <li>Avadhoot Joshi</li>
+        <li>Vedant Vasundekar</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Vision</h3>
+      <p>
+        Empowering India through trusted digital safety, responsible AI, and innovation-driven protection.
+      </p>
+      <div class="footer-quote">"Together, we build a safer digital tomorrow."</div>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Legal</h3>
+      <ul class="footer-legal">
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Drishti Dynamics — Powered by Open AI
+  </div>
+
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="js/three-bg.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/image-ai.js"></script>
+</body>
+
+</html>

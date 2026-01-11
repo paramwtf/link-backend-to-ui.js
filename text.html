@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Text Spam Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <canvas id="bg"></canvas>
+
+  <nav class="navbar nav-glass fixed-top px-4">
+    <span class="navbar-brand">        
+      <a href="index.html">
+        Drishti Dynamics
+        </a></span>
+    <div>
+      <a href="image.html" class="nav-link d-inline text-white">Image</a>
+      <a href="video.html" class="nav-link d-inline text-white">Video</a>
+      <a class="nav-link d-inline fw-bold text-white">Text</a>
+    </div>
+  </nav>
+
+<section class="hero text-center" style="padding-top: 120px; padding-bottom: 60px; position: relative; z-index: 1;">
+    <div class="icon-circle shadow-glow-magenta mb-4 mx-auto" 
+         style="width: 80px; height: 80px; background: rgba(219, 78, 255, 0.1); border: 2px solid #db4eff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(219, 78, 255, 0.4);">
+        
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#db4eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <line x1="9" y1="10" x2="15" y2="10"></line>
+            <line x1="9" y1="14" x2="13" y2="14"></line>
+        </svg>
+    </div>
+
+    <h1 class="display-4 fw-bold text-white">
+        Text <span style="color: #db4eff; text-shadow: 0 0 15px rgba(219, 78, 255, 0.5);">Spam</span> Analyzer
+    </h1>
+    <p class="text mx-auto fw-bold" style="max-width: 600px; color: #a0a0a0; font-size: 0.95rem;">
+        Neural semantic analysis for malicious intent and psychological pattern detection
+    </p>
+</section>
+  <div class="container main-area">
+    <div class="card-glass magenta-main-box">
+      <div class="card-glass">
+
+        <!-- TEXT INPUT -->
+        <div class="textarea-container" id="scannerWrapper">
+          <textarea id="textInput" class="form-control" placeholder="Paste or type text here..."></textarea>
+
+          <div class="scan-overlay d-none" id="scanOverlay">
+            <div class="scan-line"></div>
+            <div class="scan-text">AI DEEP SCANNING...</div>
+          </div>
+
+          <p id="charCount" class="mt-2 text">0 characters</p>
+        </div>
+        <button class="btn-ai mt-3" id="textAnalyzeBtn">
+          <span id="btnText">Analyze Text</span>
+          <div id="btnLoader" class="spinner-border spinner-border-sm d-none" role="status"></div>
+        </button>
+
+        <!-- AI STATUS -->
+        <div class="ai-status" id="aiStatusText">
+          <h5>AI Analysis in Progress</h5>
+          <ul>
+            <li>Tokenizing content</li>
+            <li>Semantic analysis</li>
+            <li>Pattern recognition</li>
+            <li>Confidence scoring</li>
+          </ul>
+        </div>
+
+        <!-- RESULT -->
+        <div id="resultCardText" class="result-card d-none"></div>
+    </div>
+  </div>
+  </div>
+  <!-- Cards Section -->
+  <div class="container mt-5 mb-5">
+    <div class="row g-4 justify-content-center">
+
+<div class="col-md-4">
+  <div class="card glass-card magenta-theme h-100 shadow-lg" style="border-radius: 25px; border: 1px solid rgba(219, 78, 255, 0.2); background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); position: relative;">
+    <div class="card-badge" style="background: #db4eff; color: white; padding: 2px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; position: absolute; top: 15px; right: 15px;">SECURE</div>
+    
+    <div class="card-body text-center p-4">
+      <div class="display-6 mb-3 mt-2">🛡️</div>
+      <h5 class="card-title fw-bold text-white mb-4">Privacy & Safety</h5>
+      
+      <ul class="list-unstyled text-start px-2 mb-4">
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-lock text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+          <span class="text-white-50"><b class="text-white">Zero Data Storage:</b> Your text is processed in real-time and is never saved on our servers.</span>
+        </li>
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-user-secret text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+          <span class="text-white-50"><b class="text-white">Anonymized Scan:</b> Every analysis is fully anonymous to protect your personal identity.</span>
+        </li>
+        <li class="d-flex align-items-start">
+          <i class="fas fa-file-shield text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+          <span class="text-white-50"><b class="text-white">Structure Audit:</b> Our AI digs deep into the hidden layers of text to find malicious links or tricks.</span>
+        </li>
+      </ul>
+
+      <div class="mt-2 pt-2 border-top border-secondary">
+         <small class="text-white-50">Detected a fraud? Call <b>1930</b> immediately.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card glass-card magenta-theme h-100 shadow-lg" style="border-radius: 25px; border: 1px solid rgba(219, 78, 255, 0.2); background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); position: relative;">
+    <div class="card-badge" style="background: #db4eff; color: white; padding: 2px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; position: absolute; top: 15px; right: 15px;">FAST</div>
+    
+    <div class="card-body text-center p-4">
+      <div class="display-6 mb-3 mt-2">⚡</div>
+      <h5 class="card-title fw-bold text-white mb-4">How It Works</h5>
+      
+      <ul class="list-unstyled text-start px-2 mb-4">
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-check text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+          <span class="text-white-50"><b class="text-white">Text Reading:</b> The system will initially read the provided Information.</span>
+        </li>
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-check text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+          <span class="text-white-50"><b class="text-white">Smart Scan:</b> "Our system evaluates the intent and structure of the text to see if it sounds like a scam."</span>
+        </li>
+        <li class="d-flex align-items-start">
+          <i class="fas fa-check text-magenta me-3 mt-1" style="font-size: 14px;"></i>
+          <span class="text-white-50"><b class="text-white">Final Result:</b> You will know if the message is <b>safe or a fraud</b> within just a few seconds.</span>
+        </li>
+      </ul>
+
+      <a href="#" class="text-magenta text-decoration-none fw-bold small" style="letter-spacing: 1px;">
+        START SCANNING <i class="fas fa-chevron-up ms-2"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card glass-card magenta-theme h-100 shadow-lg" style="border-radius: 25px; border: 1px solid rgba(219, 78, 255, 0.2); background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px);">
+    <div class="card-badge" style="background: #db4eff; color: white; padding: 2px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; position: absolute; top: 15px; right: 15px;">SMART</div>
+    
+    <div class="card-body text-center p-4">
+      <div class="display-6 mb-3 mt-2">🧠</div>
+      <h5 class="card-title fw-bold text-white mb-4">Neural Analysis Engine</h5>
+      
+      <ul class="list-unstyled text-start px-2">
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-bolt text-magenta me-3 mt-1"></i>
+          <span class="text-white-50"><b class="text-white">Pattern Recognition:</b> Identifies evolving spam structures that traditional filters usually miss.</span>
+        </li>
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-brain text-magenta me-3 mt-1"></i>
+          <span class="text-white-50"><b class="text-white">Semantic Logic:</b> Analyzes the <i>why</i> behind a message to decode hidden malicious intent.</span>
+        </li>
+        <li class="mb-3 d-flex align-items-start">
+          <i class="fas fa-shield-alt text-magenta me-3 mt-1"></i>
+          <span class="text-white-50"><b class="text-white">Heuristic Scanning:</b> Proactively detects new phishing patterns without relying on blacklists.</span>
+        </li>
+        <li class="d-flex align-items-start">
+          <i class="fas fa-check-double text-magenta me-3 mt-1"></i>
+          <span class="text-white-50"><b class="text-white">Confidence Scoring:</b> Provides deep-layer accuracy to minimize false alerts.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="info-architecture-container p-4"
+      style="background: rgba(255,255,255,0.03); border-radius: 25px; border: 1px solid rgba(255,255,255,0.05);">
+      <div class="row align-items-center justify-content-center">
+
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="neural-visual d-flex align-items-center justify-content-center" style="height: 150px;">
+
+            <div class="node input-node"><span>Text Data</span></div>
+
+            <div class="connection-line" id="flow1"
+              style="flex-grow: 1; height: 2px; background: rgba(255,255,255,0.1); max-width: 60px;"></div>
+
+            <div class="node brain-node"
+              style="width: 80px; height: 80px; background: #db4eff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 0 20px #db4eff; position: relative;">
+              <i class="fas fa-brain"></i>
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring" style="animation-delay: 1s;"></div>
+            </div>
+
+            <div class="connection-line" id="flow2"
+              style="flex-grow: 1; height: 2px; background: rgba(255,255,255,0.1); max-width: 60px;"></div>
+
+            <div class="node output-node" id="finalNode"
+              style="width: 60px; height: 60px; border: 2px solid #db4eff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #db4eff; font-size: 11px; font-weight: bold;">
+              <span>Result</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="info-content ps-lg-4">
+            <h2 class="display-6 fw-bold text-white mb-3">Understanding Semantic Intelligence</h2>
+            <p class="text-white-50 mb-4" style="font-size: 1rem; line-height: 1.6;">
+              Our AI engine transcends traditional keyword matching by processing millions of spam patterns in
+              real-time.
+              By utilizing <b>Neural Semantic Analysis</b>, we don't just scan for words—we decode the <b>Semantic
+                Intent</b>
+              to identify sophisticated phishing and social engineering tactics that standard filters often miss.
+            </p>
+            <ul class="feature-list list-unstyled">
+              <li class="mb-3">
+                <i class="fas fa-check-circle me-2 text-success"></i>
+                <b class="text-white">Contextual Intelligence:</b>
+                Scans entire sentence structures to identify hidden manipulative patterns rather than isolated words.
+              </li>
+
+              <li class="mb-3">
+                <i class="fas fa-check-circle me-2 text-success"></i>
+                <b class="text-white">Heuristic Analysis:</b>
+                Employs advanced pattern recognition to detect "Zero-Day" (new) and evolving phishing threats.
+              </li>
+
+              <li class="mb-3">
+                <i class="fas fa-check-circle me-2 text-success"></i>
+                <b class="text-white">Precision Scoring:</b>
+                Utilizes confidence-based algorithms to ensure high accuracy with near-zero false positives.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5 mb-5">
+    <div class="card-glass p-5 mx-auto shadow-lg"
+      style="max-width: 1150px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(15px);">
+      <div class="row align-items-center">
+
+        <div class="col-lg-7 pe-lg-5">
+          <div class="badge-custom mb-3"
+            style="background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); padding: 4px 12px; border-radius: 50px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; width: fit-content;">
+            <i class="fas fa-shield-alt me-1"></i> Smart Protection
+          </div>
+
+          <h2 class="display-6 fw-bold text-white mb-3">Beyond Keywords</h2>
+
+          <p class="text-white-50 mb-4" style="font-size: 1rem; line-height: 1.5;">
+            Traditional filters only scan for "blacklisted" words. <b>Drishti Dynamics</b> uses Neural Semantic Analysis
+            to understand the <i>intent</i> and psychological patterns behind a message, catching threats that others
+            miss.
+          </p>
+
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <div class="small text-white-50"><i class="fas fa-check-circle text-success me-2"></i>Intent Mapping</div>
+              <div class="small text-white-50"><i class="fas fa-check-circle text-success me-2"></i>Context Intelligence
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="small text-white-50"><i class="fas fa-check-circle text-success me-2"></i>Link Metadata Scan
+              </div>
+              <div class="small text-white-50"><i class="fas fa-check-circle text-success me-2"></i>Zero False Positives
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-md-6">
+              <div class="p-3 style-box h-100"
+                style="background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                <h6 class="text-info small fw-bold mb-2">Report Threat</h6>
+                <ul class="list-unstyled mb-0" style="font-size: 0.85rem;">
+                  <li class="mb-1"><a href="https://cybercrime.gov.in" target="_blank"
+                      class="text-white-50 text-decoration-none hover-link">Cyber Portal <i
+                        class="fas fa-external-link-alt ms-1"></i></a></li>
+                  <li><a href="https://sancharsaathi.gov.in" target="_blank"
+                      class="text-white-50 text-decoration-none hover-link">Sanchar Saathi <i
+                        class="fas fa-external-link-alt ms-1"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 style-box h-100"
+                style="background: rgba(219, 78, 255, 0.05); border-radius: 15px; border: 1px solid rgba(219, 78, 255, 0.1);">
+                <h6 class="small fw-bold mb-1" style="color: #db4eff;">National Helpline</h6>
+                <p class="text-white mb-0 fw-bold" style="font-size: 1.2rem;">1930</p>
+                <span class="text-white-50" style="font-size: 0.75rem;">Instant Cyber Support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 mt-5 mt-lg-0 text-center">
+          <div class="analysis-visual-box p-4">
+            <div class="scan-container">
+              <div class="scan-line"></div>
+              <div class="text-chunks">
+                <span class="chunk c1">Analyzing Intent...</span>
+                <span class="chunk c2">Checking Metadata</span>
+                <span class="chunk c3">Semantic Check</span>
+              </div>
+              <div class="shield-main">
+                <i class="fas fa-microchip"></i>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h5 class="text-white fw-bold">Drishti Semantic Engine</h5>
+              <p class="text-info small opacity-75">Real-time Contextual Analysis</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <img src="img/Logo.jpeg" class="footer-logo">
+      <h3 class="footer-heading">Drishti Dynamics</h3>
+      <p>AI-powered cybersecurity to protect digital communication across text, images, and video.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Team</h3>
+      <ul>
+        <li>Kartik Yamsanwar (Leader)</li>
+        <li>Parmanand Mahajan</li>
+        <li>Avadhoot Joshi</li>
+        <li>Vedant Vasundekar</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Vision</h3>
+      <p>
+        Empowering India through trusted digital safety, responsible AI, and innovation-driven protection.
+      </p>
+      <div class="footer-quote">"Together, we build a safer digital tomorrow."</div>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Legal</h3>
+      <ul class="footer-legal">
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Drishti Dynamics — Powered by Open AI
+  </div>
+
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/text.js"></script>
+
+</body>
+
+</html>

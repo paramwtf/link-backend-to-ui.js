@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 Spam Analyzer - Drishti Dynamics</title>
+  <link rel="icon" type="image/png" href="img/Logo.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+</head>
+
+<body>
+  <div id="light-pillar-bg"></div>
+
+
+  <div class="cosmic-toggle">
+    <!-- LOGIN BUTTON -->
+    <button id="loginBtn" class="toggle-btn auth-menu-btn">Login</button>
+    <button id="logoutBtn" class="toggle-btn auth-menu-btn" style="display:none;">Logout</button>
+
+    <!-- MENU BUTTON + DROPDOWN -->
+    <div class="menu-btn-wrapper">
+      <button class="toggle-btn">☰ Menu</button>
+      <div class="toggle-dropdown">
+        <a href="#welcome-section">Welcome</a>
+        <a href="#analyzer-overview-section">Analyzer Modules</a>
+        <a href="#features-section">Features</a>
+        <a href="#about-section">About</a>
+        <a href="#vision-section">Vision</a>
+        <a href="#team-section">Team</a>
+        <a href="#contact-section">Contact</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- SECTION 1: WELCOME -->
+  <section class="content-section welcome-section" id="welcome-section">
+    <div class="section-container">
+      <img src="img/Logo.jpeg" alt="Drishti Dynamics Logo" class="section-logo">
+      <h1 class="section-title">Spam Analyzer</h1>
+      <div class="welcome-info">
+        <h2 class="team-name">Drishti Dynamics</h2>
+        <p class="project-desc">AI-Powered Protection Against Spam in Text, Images & Video</p>
+        <p class="vision-tag">"Safeguarding Digital India"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ANALYZER OVERVIEW -->
+  <section class="content-section analyzer-overview-section" id="analyzer-overview-section">
+    <div class="section-container">
+      <h1 class="section-title">Analyzer Modules</h1>
+      <div class="analyzer-grid">
+        <div class="analyzer-card">
+          <div class="icon-circle shadow-glow-magenta mb-4 mx-auto" id="heroIconContainer"
+            style="width: 60px; height: 60px; background: rgba(219, 78, 255, 0.1); border: 2px solid #db4eff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(219, 78, 255, 0.4);">
+
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#db4eff" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              <line x1="9" y1="10" x2="15" y2="10"></line>
+              <line x1="9" y1="14" x2="13" y2="14"></line>
+            </svg>
+          </div>
+          <h2 class="analyzer-title">Text Analyzer</h2>
+          <p class="analyzer-desc">
+          <ul class="analyzer-desc">
+            <li>User submits any message, email, or chat content</li>
+            <li>Text is processed locally using <b>Phi-3 (phi3:latest)</b></li>
+            <li>Detects spam, scams, phishing & manipulation</li>
+          </ul>
+          </p>
+          <a href="text.html" class="analyzer-btn">Analyze Text</a>
+        </div>
+        <div class="analyzer-card">
+          <div class="icon-circle shadow-glow-magenta mb-2 mx-auto" id="videoHeroIcon"
+            style="width: 60px; height: 60px; background: rgba(219, 78, 255, 0.1); border: 2px solid #db4eff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(219, 78, 255, 0.4); position: relative;">
+
+            <i class="fas fa-image"
+              style="color: #db4eff; font-size: 1.5rem; position: relative; z-index: 2; margin: 0;"></i>
+          </div>
+          <h2 class="analyzer-title">Image Analyzer</h2>
+          <p class="analyzer-desc">
+          <ul class="analyzer-desc">
+            <li>Analyzes uploaded images, screenshots & QR codes</li>
+            <li>Runs on <b>LLaVA (7B vision-language model)</b></li>
+            <li>Detects scams, fake receipts, hidden phishing & spam</li>
+          </ul>
+          </p>
+          <a href="image.html" class="analyzer-btn">Analyze Image</a>
+        </div>
+        <div class="analyzer-card">
+          <div class="icon-circle shadow-glow-magenta mb-4 mx-auto" id="videoHeroIcon"
+            style="width: 60px; height: 60px; background: rgba(219, 78, 255, 0.1); border: 2px solid #db4eff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(219, 78, 255, 0.4); position: relative;">
+
+            <i class="fas fa-video"
+              style="color: #db4eff; font-size: 1.5rem; position: relative; z-index: 2; margin: 0;"></i>
+          </div>
+          <h2 class="analyzer-title">Video Analyzer</h2>
+          <p class="analyzer-desc">
+          <ul class="analyzer-desc">
+            <li>Extracts audio & on-screen text (OCR from frames)</li>
+            <li>Merges transcript + frame text into one analysis</li>
+            <li>Uses <b>Phi-3</b> to detect scams, deepfake scripts & fraud</li>
+          </ul>
+          </p>
+          <a href="video.html" class="analyzer-btn">Analyze Video</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FEATURES -->
+  <section class="content-section features-section" id="features-section">
+    <div class="section-container">
+      <h1 class="section-title">Core Capabilities</h1>
+      <div class="features-grid-large">
+
+        <div class="feature-item-large">
+          <div class="card-glow"></div>
+          <div class="icon-wrap">
+            <i class="fas fa-comment-alt"></i>
+          </div>
+          <h3>Text Detection</h3>
+          <div class="badge-container">
+            <span class="tech-badge-new">POWERED BY PHI-3</span>
+          </div>
+          <ul class="check-list">
+            <li>Phishing Link Analysis</li>
+            <li>Scam Sentiment Detection</li>
+            <li>100% Offline Processing</li>
+          </ul>
+        </div>
+
+        <div class="feature-item-large">
+          <div class="card-glow"></div>
+          <div class="icon-wrap">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Vision Scanning</h3>
+          <div class="badge-container">
+            <span class="tech-badge-new">POWERED BY LLAVA</span>
+          </div>
+          <ul class="check-list">
+            <li>QR Code Fraud Check</li>
+            <li>Fake Receipt Verification</li>
+            <li>Hidden Metadata Scan</li>
+          </ul>
+        </div>
+
+        <div class="feature-item-large">
+          <div class="card-glow"></div>
+          <div class="icon-wrap">
+            <i class="fas fa-play-circle"></i>
+          </div>
+          <h3>Video Intelligence</h3>
+          <div class="badge-container">
+            <span class="tech-badge-new">MULTI-MODAL AI</span>
+          </div>
+          <ul class="check-list">
+            <li>AI Audio Transcription</li>
+            <li>OCR Frame Analysis</li>
+            <li>Deepfake Pattern Sync</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ABOUT - REORGANIZED WITH CARDS -->
+  <section class="content-section about-section" id="about-section">
+    <div class="section-container">
+      <h1 class="section-title">About the Project</h1>
+      <div class="about-cards-grid">
+        <div class="about-card">
+          <div class="about-icon">🚀</div>
+          <h3>Multi-Model Detection</h3>
+          <p>AI-powered web platform that detects scams across text, images, and videos using locally running deep
+            learning models.</p>
+
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🛡️</div>
+          <h3>Advanced AI Pipeline</h3>
+          <p>Uses Phi-3 for text, LLaVA for images, and a multi-stage video analysis system combining audio, OCR, and AI
+            models.</p>
+
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🎯</div>
+          <h3>Safer Digital Space</h3>
+          <p>Protects users from scams, deepfake fraud, phishing, and misleading content without sending data to
+            external servers.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: VISION -->
+  <section class="content-section vision-section" id="vision-section">
+    <div class="section-container">
+      <h1 class="section-title">Our Vision</h1>
+      <div class="vision-content">
+
+        <p class="analyzer-desc">
+          At <strong>Drishti Dynamics</strong>, our core mission is to architect a fortified digital ecosystem by
+          leveraging state-of-the-art AI technologies. Currently, we utilize advanced <span
+            class="highlight-tech">GPT-4o, LLaVA, and DALL-E Vision APIs</span> to provide real-time detection of
+          sophisticated phishing attempts, financial scams, and fraudulent visual patterns. To ensure immediate action,
+          we have integrated direct access to <span class="highlight-gov">Official Government Cyber-Helpline portals and
+            Emergency Response Numbers</span>, bridging the gap between automated detection and legal protection for
+          every citizen.
+        </p>
+
+        <p class="analyzer-desc">
+          Looking toward future enhancement, we are transitioning from API dependency to developing our own <span
+            class="highlight-ai">Proprietary Flagship AI Models</span>. Our R&D team is focused on training localized
+          neural networks that specialize in identifying regional fraud scripts and deepfake manipulations unique to the
+          Indian digital landscape. Our ultimate goal is to pioneer <span class="highlight-impact">Next-Generation Cyber
+            Security</span> through the responsible adoption of AI, ensuring that as technology evolves, our collective
+          digital safety remains uncompromising and resilient.
+        </p>
+
+      </div>
+    </div>
+  </section>
+  <!-- SECTION 6: TEAM -->
+  <section class="content-section team-section" id="team-section">
+    <div class="section-container">
+      <h1 class="section-title">Meet Our Team</h1>
+      <div class="team-leader-container">
+        <div class="team-leader-card">
+          <h3>Kartik Yamsanwar</h3>
+          <p class="leader-role">Full Stack Developer</p>
+          <p class="leader-title"><strong>Team Leader</strong></p>
+        </div>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <h3>Parmanand Mahajan</h3>
+          <p>Backend Developer</p>
+        </div>
+        <div class="team-member">
+          <h3>Avadhoot Joshi</h3>
+          <p>AI/ML Developer</p>
+        </div>
+        <div class="team-member">
+          <h3>Vedant Vasundekar</h3>
+          <p>Frontend Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: GET IN TOUCH - SIMPLIFIED FORMSPREE -->
+  <section class="content-section contact-section" id="contact-section">
+    <div class="section-container">
+      <h1 class="section-title">Get In Touch</h1>
+      <div class="form-container">
+        <p class="form-subtitle">Send us a message and we'll respond within 24 hours</p>
+
+        <!-- SIMPLIFIED FORMSPREE FORM -->
+        <form action="https://formspree.io/f/mzdbqror" method="POST" class="simple-contact-form">
+          <div class="form-group full-width">
+            <label for="email">Your Email:</label>
+            <input type="email" name="email" id="email" placeholder="your-email@example.com" required>
+          </div>
+          <div class="form-group full-width">
+            <label for="message">Your Message:</label>
+            <textarea name="message" id="message" rows="6"
+              placeholder="Tell us about your inquiry, feedback, or collaboration interest..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn-simple">
+            Send Message
+          </button>
+        </form>
+        <div class="form-status" id="form-status"></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <img src="img/Logo.jpeg" class="footer-logo">
+        <h3 class="footer-heading">Drishti Dynamics</h3>
+        <p>AI-powered cybersecurity to protect digital communication across text, images, and video.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading">Team</h3>
+        <ul>
+          <li>Kartik Yamsanwar (Leader)</li>
+          <li>Parmanand Mahajan</li>
+          <li>Avadhoot Joshi</li>
+          <li>Vedant Vasundekar</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading">Vision</h3>
+        <p>
+          Empowering India through trusted digital safety, responsible AI, and innovation-driven protection.
+        </p>
+        <div class="footer-quote">"Together, we build a safer digital tomorrow."</div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading">Legal</h3>
+        <ul class="footer-legal">
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Drishti Dynamics — Powered by Open AI
+    </div>
+
+  </footer>
+  <style>
+    #light-pillar-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: black;
+    }
+  </style>
+
+  <script>
+    (function () {
+      const container = document.getElementById("light-pillar-bg");
+
+      const w = window.innerWidth, h = window.innerHeight;
+      const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+      const vertexShader = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = vec4(position, 1.0);
+    }
+  `;
+
+      const fragmentShader = `
+    uniform float uTime;
+    uniform vec2 uResolution;
+    uniform float uScroll;
+    uniform vec2 uMouse;
+
+    float hash(vec2 p) {
+      return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453123);
+    }
+
+    float noise(vec2 p) {
+      vec2 i = floor(p);
+      vec2 f = fract(p);
+      vec2 u = f*f*(3.0-2.0*f);
+      return mix(
+        mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), u.x),
+        mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), u.x),
+      u.y);
+    }
+
+    void main() {
+      vec2 uv = (gl_FragCoord.xy - 0.5*uResolution.xy) / uResolution.y;
+
+      // === INERTIA PARALLAX ===
+      uv.x += uMouse.x * 0.10;
+      uv.y += uScroll * 0.18;
+
+      float t = uTime * 0.25;
+
+      // === cinematic multi beams ===
+      float beam1 = exp(-18.0 * abs(uv.x + 0.10*sin(uv.y*3.0 + t*1.6)));
+      float beam2 = exp(-22.0 * abs(uv.x - 0.15*sin(uv.y*2.6 + t*1.3)));
+      float beam3 = exp(-14.0 * abs(uv.x + 0.30*sin(uv.y*5.0 + t*2.3)));
+
+      float pillar = beam1*1.2 + beam2*0.9 + beam3*0.4;
+
+      // === fog vertical ===
+      float fog = smoothstep(0.7, -0.9, uv.y);
+
+      // === cinematic colors ===
+      vec3 base   = vec3(0.04,0.01,0.08);
+      vec3 purple = vec3(0.65,0.25,1.00);
+      vec3 pink   = vec3(1.00,0.40,1.00);
+      vec3 blue   = vec3(0.20,0.25,1.00);
+
+      vec3 col = base;
+      col += pillar * purple * 1.6;
+      col += pillar * pink * 0.7 * smoothstep(-0.2, 0.4, uv.y);
+      col += pillar * blue * 0.6 * smoothstep(-0.8, 0.1, uv.y);
+
+      // === fog + vignette ===
+      col = mix(col, base, fog * 0.65);
+
+      // === grain ===
+      float grain = noise(gl_FragCoord.xy*0.75 + t*45.0)*0.03;
+      col += grain;
+
+      // === gamma ===
+      col = pow(col, vec3(0.9));
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+      const material = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        transparent: true,
+        uniforms: {
+          uTime: { value: 0 },
+          uResolution: { value: new THREE.Vector2(w, h) },
+          uScroll: { value: 0.0 },
+          uMouse: { value: new THREE.Vector2(0.0, 0.0) },
+        }
+      });
+
+      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+      scene.add(mesh);
+
+      // === RENDER LOOP ===
+      function animate(t) {
+        material.uniforms.uTime.value = t * 0.001;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate(0);
+
+      // === INERTIA PHYSICS ===
+
+      let targetScroll = 0;
+      let targetMouse = { x: 0, y: 0 };
+      let scrollInertia = 0;
+      let mouseInertia = { x: 0, y: 0 };
+
+      const scrollDamp = 0.08;
+      const mouseDamp = 0.12;
+
+      window.addEventListener("scroll", () => {
+        targetScroll = window.scrollY / 1100;
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        targetMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        targetMouse.y = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function updateInertia() {
+        scrollInertia += (targetScroll - scrollInertia) * scrollDamp;
+        material.uniforms.uScroll.value = scrollInertia;
+
+        mouseInertia.x += (targetMouse.x - mouseInertia.x) * mouseDamp;
+        mouseInertia.y += (targetMouse.y - mouseInertia.y) * mouseDamp;
+        material.uniforms.uMouse.value.set(mouseInertia.x, mouseInertia.y);
+
+        requestAnimationFrame(updateInertia);
+      }
+      updateInertia();
+
+      // === RESIZE ===
+      window.addEventListener("resize", () => {
+        const nw = window.innerWidth, nh = window.innerHeight;
+        renderer.setSize(nw, nh);
+        material.uniforms.uResolution.value.set(nw, nh);
+      });
+
+    })();
+  </script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// ----------------------
+// 🔹 FIREBASE INIT
+// ----------------------
+const firebaseConfig = {
+  apiKey: "AIzaSyBOUOC-Kg4S-W5m-N9AsrOraoxZSGnagRI",
+  authDomain: "spam-analyzer-6439d.firebaseapp.com",
+  databaseURL: "https://spam-analyzer-6439d-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "spam-analyzer-6439d",
+  storageBucket: "spam-analyzer-6439d.firebasestorage.app",
+  messagingSenderId: "914665649686",
+  appId: "1:914665649686:web:5e1312e8f9c661997f6737",
+  measurementId: "G-TLQ53VYBLN"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth();
+
+// ----------------------
+// 🔹 LOGIN / LOGOUT BUTTONS
+// ----------------------
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (loginBtn) loginBtn.onclick = () => window.location.href = "auth.html";
+
+if (logoutBtn) {
+  logoutBtn.onclick = async () => {
+    try {
+      await signOut(auth);
+      window.location.reload();
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+}
+
+// ----------------------
+// 🔹 AUTH STATE HANDLER
+// ----------------------
+onAuthStateChanged(auth, user => {
+  if (!loginBtn || !logoutBtn) return;
+  loginBtn.style.display = user ? "none" : "block";
+  logoutBtn.style.display = user ? "block" : "none";
+});
+
+// ----------------------
+// 🔹 DOM READY LOGIC
+// ----------------------
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ----------------------
+  // 🔹 MENU TOGGLE (NEW MERGED LOGIC)
+  // ----------------------
+  const menuBtn = document.querySelector('.menu-btn-wrapper > .toggle-btn');
+  const dropdown = document.querySelector('.toggle-dropdown');
+
+  if (menuBtn && dropdown) {
+    menuBtn.addEventListener('click', () => {
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close dropdown on link click
+    dropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        dropdown.style.display = 'none';
+      });
+    });
+
+    // Smooth scroll + close
+    dropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  }
+
+  // ----------------------
+  // 🔹 FORMSPREE CONTACT FORM
+  // ----------------------
+  const simpleForm = document.querySelector('.simple-contact-form');
+  if (simpleForm) {
+    const submitBtn = simpleForm.querySelector('.submit-btn-simple');
+    const statusDiv = document.getElementById('form-status');
+
+    simpleForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      statusDiv.className = 'form-status loading';
+      statusDiv.textContent = 'Sending your message...';
+
+      const formData = new FormData(simpleForm);
+
+      fetch(simpleForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(() => {
+        statusDiv.className = 'form-status success';
+        statusDiv.innerHTML = '✅ Message sent successfully! We\'ll get back to you within 24 hours.';
+        simpleForm.reset();
+      })
+      .catch(() => {
+        statusDiv.className = 'form-status error';
+        statusDiv.textContent = '❌ Failed to send message. Please try again.';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      });
+    });
+  }
+
+});
+
+  </script>
+  <div class="cursor"></div>
+
+
+</body>
+
+</html>
