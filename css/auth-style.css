@@ -1,0 +1,159 @@
+:root {
+    --magenta: #db4eff;
+    --magenta-glow: rgba(219, 78, 255, 0.4);
+    --bg-dark: #0a0a0a;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Background Pulse Effect */
+.bg-pulse {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(219, 78, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: move 15s infinite alternate ease-in-out;
+}
+
+@keyframes move {
+    from { transform: translate(-30%, -30%); }
+    to { transform: translate(30%, 30%); }
+}
+
+/* Glassmorphism Auth Card */
+.auth-card {
+    background: rgba(20, 20, 20, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(219, 78, 255, 0.15);
+    border-radius: 25px;
+    padding: 50px 40px;
+    width: 400px;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.magenta-text {
+    color: var(--magenta);
+    text-shadow: 0 0 10px var(--magenta-glow);
+}
+
+/* Custom Input Styling */
+.input-group-custom {
+    margin-bottom: 20px;
+}
+
+.input-group-custom input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 15px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group-custom input:focus {
+    border-color: var(--magenta);
+    box-shadow: 0 0 10px var(--magenta-glow);
+    background: rgba(219, 78, 255, 0.05);
+}
+
+/* Theme Buttons */
+.btn-magenta {
+    background: var(--magenta);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px var(--magenta-glow);
+    transition: 0.3s;
+}
+
+.btn-magenta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--magenta);
+}
+
+.btn-outline-custom, .btn-guest {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.btn-guest {
+    border-color: rgba(219, 78, 255, 0.3);
+    background: rgba(219, 78, 255, 0.05);
+}
+
+.btn-outline-custom:hover, .btn-guest:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.copyright-text {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+}
+/* Updated Auth Card with Smooth Hover Logic */
+.auth-card {
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(219, 78, 255, 0.15);
+    border-radius: 35px;
+    padding: 60px 50px;
+    width: 480px;
+    z-index: 10;
+    position: relative;
+    
+    /* Pehle se transition set karna zaroori hai */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7), 
+                0 0 15px rgba(219, 78, 255, 0.03);
+}
+
+/* Hover Effect: Glow aur Lifting */
+.auth-card:hover {
+    transform: translateY(-10px) scale(1.01); /* Card thoda upar uthega */
+    border-color: rgba(219, 78, 255, 0.5); /* Border jyada bright hogi */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8), 
+                0 0 40px rgba(219, 78, 255, 0.15); /* Magenta glow phail jayega */
+}
+
+/* Logo icon ka bhi hover effect dal dete hain */
+.auth-card:hover .logo-area svg {
+    filter: drop-shadow(0 0 15px var(--magenta));
+    transform: rotateY(180deg); /* 3D flip effect */
+    transition: 0.8s ease;
+}
+
+/* Input fields par bhi focus ke sath hover effect */
+.input-group-custom input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+.main-logo {
+    width: 100px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px var(--magenta-glow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

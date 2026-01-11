@@ -1,0 +1,1111 @@
+/* ----------------------------
+   GLOBAL RESET & BODY
+---------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', monospace;
+  color: #fff;
+  background: #0a0a0f;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ----------------------------
+   COSMIC BACKGROUND
+---------------------------- */
+.cosmic-bg-layer {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  background: radial-gradient(ellipse at center, #0a0a0f, #000000);
+  animation: cosmicTwinkle 8s linear infinite;
+}
+
+@keyframes cosmicTwinkle {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* ----------------------------
+   MAIN CONTENT / SECTIONS
+---------------------------- */
+.main-content {
+  position: relative;
+  z-index: 10;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
+/* ----------------------------
+   SECTION ENTRANCE ANIMATION
+---------------------------- */
+.content-section {
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: sectionFadeIn 1.2s forwards;
+}
+
+/* First section (Welcome) full viewport height */
+.content-section:nth-child(1) {
+  height: 100vh;
+  animation-delay: 0.2s;
+}
+
+/* All other sections behave like cards */
+.content-section:nth-child(n+2) {
+  height: auto; /* card height based on content */
+  padding: 60px 30px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.content-section:nth-child(2) { animation-delay: 0.4s; }
+.content-section:nth-child(3) { animation-delay: 0.6s; }
+.content-section:nth-child(4) { animation-delay: 0.8s; }
+.content-section:nth-child(5) { animation-delay: 1s; }
+.content-section:nth-child(6) { animation-delay: 1.2s; }
+.content-section:nth-child(7) { animation-delay: 1.4s; }
+
+@keyframes sectionFadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------
+   SECTION LOGO
+---------------------------- */
+.section-logo {
+  width: 150px; 
+  height: 150px;
+  border-radius: 20px;
+  margin: 0 auto 25px;
+  display: block;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 224, 0.5));
+  transition: all 0.3s ease;
+}
+
+.section-logo:hover {
+  filter: drop-shadow(0 0 25px rgba(0, 255, 224, 0.7));
+}
+
+:root {
+  --neon: #42ffe6;
+  --white: #ffffff;
+  --accent: #ff2bff;
+
+  /* TITLE GRADIENT */
+  --title-gradient: linear-gradient(90deg, var(--white), var(--neon));
+
+  /* CARD STYLING */
+  --card-bg: rgba(10, 17, 42, 0.40);
+  --blur: 30px;
+  --border: rgba(255,0,255,0.25);
+  --radius: 22px;
+
+  --text-strong: rgba(255,255,255,0.92);
+  --text-mid: rgba(255,255,255,0.78);
+  --text-muted: rgba(255,255,255,0.58);
+}
+
+/* ==================================
+   PREMIUM GLASS CARDS + LAYOUT
+================================== */
+.section-container,
+.analyzer-card,
+.feature-item,
+.team-member,
+.team-leader-card,
+.about-card,
+.footer-container {
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 40px 34px;
+  margin: 28px 0;
+  box-shadow: 0 22px 55px rgba(0,0,0,0.55);
+}
+
+.section-container:hover,
+.analyzer-card:hover,
+.feature-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,0,255,0.35);
+}
+
+/* ==================================
+   TITLES (STATIC WHITE → NEON)
+================================== */
+
+/* BIG — SPAM ANALYZER / WELCOME */
+.section-title.welcome {
+  font-size: clamp(3.4rem, 8vw, 6.8rem);
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(90deg, var(--accent), var(--neon), var(--white));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+/* NORMAL SECTION TITLES */
+.section-title {
+  font-size: clamp(1.85rem, 3.8vw, 2.35rem);
+  font-weight: 700;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 22px;
+}
+
+/* SUBTITLES / H3 */
+.section-container h3,
+.feature-item h3,
+.team-member h3,
+.team-leader-card h3,
+.about-card h3 {
+  font-size: 1.22rem;
+  font-weight: 600;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ==================================
+   PARAGRAPH TEXT (WHITE)
+================================== */
+.section-container p,
+.feature-item p,
+.team-member p,
+.team-leader-card p,
+.about-card p,
+.footer-container p {
+  color: var(--white);
+  font-size: 1.05rem;
+  line-height: 1.6;
+   
+}
+
+
+/* ----------------------------
+   ANALYZER GRID & BUTTONS
+---------------------------- */
+.analyzer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.analyzer-card {
+  text-align: center;
+  padding: 40px 30px;
+}
+
+.analyzer-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, darkmagenta, #c800ff, #00caff);
+  color: white;
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 12px 30px rgba(255,0,255,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.analyzer-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(255,0,255,0.5);
+}
+#heroIconContainer {
+    /* Horizontal alignment */
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+    transition: transform 0.3s ease;
+}
+#imageHeroIcon i {
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* Glow effect */
+    filter: drop-shadow(0 0 5px rgba(219, 78, 255, 0.8)); 
+}
+
+
+#imageIconWrapper {
+    display: flex !important;
+    align-items: center !important;   /* Vertically center */
+    justify-content: center !important; /* Horizontally center */
+    margin: 0 auto 1.5rem auto; 
+}
+
+
+.auth-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    text-align: center;
+}
+
+
+#imageIconWrapper i {
+    line-height: 0;    
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+} 
+#videoHeroIcon {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    align-items: center !important;   /* Vertical alignment */
+    justify-content: center !important; /* Horizontal alignment */
+    padding: 0 !important;          /* No padding */
+}
+
+#videoHeroIcon i {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;          
+    text-align: center !important;
+}
+
+.auth-card:hover #heroIconContainer {
+    transform: scale(1.1);
+}
+
+/* ----------------------------
+   FEATURES 
+---------------------------- */
+/* Container ko 3 ko ek hi row mein rakhne ke liye force karega */
+.features-grid-large {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Force exactly 3 columns */
+    gap: 40px; /* Cards ke beech space */
+    width: 100%;
+    max-width: 1400px; /* Badi screen par stretch hone ke liye width badha di */
+    margin: 50px auto;
+}
+
+/* Feature Item - 30% Bigger Size Logic */
+.feature-item-large {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(219, 78, 255, 0.2);
+    border-radius: 28px; /* Slightly more rounded for larger size */
+    
+    /* Size Increase: Padding aur Min-height badha di */
+    padding: 60px 40px; 
+    min-height: 450px; 
+    
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+/* Hover effect ko bhi thoda scale-up kiya */
+.feature-item-large:hover {
+    transform: translateY(-15px) scale(1.05);
+    border-color: #db4eff;
+    box-shadow: 0 25px 50px rgba(219, 78, 255, 0.25);
+}
+
+/* Icons ko bhi bada kiya taaki card khali na lage */
+.icon-wrap i {
+    font-size: 3.5rem; /* Icon size 30% increase */
+    color: #db4eff;
+    margin-bottom: 25px;
+    display: block;
+    filter: drop-shadow(0 0 15px rgba(219, 78, 255, 0.6));
+}
+
+/* Titles and List Size Adjustment */
+.feature-item-large h3 {
+    font-size: 1.8rem; /* Bada title */
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.check-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    text-align: left; /* List left hi achi lagti hai readability ke liye */
+    display: inline-block;
+}
+
+.check-list li {
+    font-family: 'Montserrat', sans-serif;
+    color: #e0e0e0;
+    font-size: 1.1rem; /* Text size increased */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile Responsive: Agar screen choti ho toh ek ke niche ek aa jayein */
+@media (max-width: 1024px) {
+    .features-grid-large {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+}
+
+/* Grid Setup for Large Cards */
+.features-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Card ki width badha di */
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+/* Eye-Catching Large Card */
+.feature-item-large {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px); /* Blur badha diya readability ke liye */
+    border: 1px solid rgba(219, 78, 255, 0.2);
+    border-radius: 24px;
+    padding: 40px 30px; /* Padding badha di taaki bada dikhe */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
+}
+
+/* Hover Effect jo Judges ko dikhega */
+.feature-item-large:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: #db4eff;
+    box-shadow: 0 20px 40px rgba(219, 78, 255, 0.2);
+}
+
+/* Tag Container Fix (No more dislocation) */
+.badge-container {
+    margin: 15px 0;
+    display: block; /* Tag ko line mein rakhne ke liye */
+}
+
+.tech-badge-new {
+    background: linear-gradient(90deg, rgba(0, 255, 224, 0.2), rgba(219, 78, 255, 0.2));
+    color: #00ffe0;
+    border: 1px solid #00ffe0;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Icons Styling */
+.icon-wrap i {
+    font-size: 2.5rem; /* Icon size bada kiya */
+    color: #db4eff;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(219, 78, 255, 0.5));
+}
+
+/* Feature List (Clean & Readable) */
+.check-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+.check-list li {
+    font-family: 'Montserrat', sans-serif;
+    color: #d1d1d1;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.check-list li::before {
+    content: '→';
+    color: #db4eff;
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+/* ----------------------------
+   RESPONSIVE ADJUSTMENTS
+---------------------------- */
+@media (max-width: 1100px) {
+  .analyzer-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+  }
+}
+
+@media (max-width: 700px) {
+  .analyzer-grid,
+  .features-grid {
+    grid-template-columns: 1fr; /* 1 card per row on small screens */
+  }
+}
+
+
+/* ----------------------------
+   ABOUT CARDS
+---------------------------- */
+.about-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.about-card {
+  text-align: center;
+  padding: 35px 25px;
+  background: rgba(30, 10, 45, 0.25);
+  border: 1px solid rgba(255,0,255,0.2);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.65), 0 0 30px rgba(255,0,255,0.28);
+}
+
+.about-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.about-card h3 {
+  font-size: 1.5rem;
+  color: #ff00ff;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+/*-------------------------
+Vision -------------*/
+/* Vision Section Styling */
+#vision-section {
+  padding: 80px 0; 
+  background-color: transparent;
+}
+
+#vision-section .vision-content {
+  max-width: 1000px; 
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Paragraph Styling - Montserrat Font */
+#vision-section .analyzer-desc {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400; /* Regular for reading */
+  line-height: 1.8; 
+  color: #e0e0e0;
+  font-size: 1.15rem; 
+  margin-bottom: 40px; 
+  text-align: justify; 
+}
+
+/* Key Highlights Styling */
+.highlight-tech {
+  color: #00d4ff; 
+  font-weight: 600;
+}
+
+.highlight-gov {
+  color: #ffca28; 
+  font-weight: 600;
+}
+
+.highlight-ai {
+  color: #db4eff; 
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.highlight-impact {
+  border-bottom: 2px solid #db4eff;
+  color: #ffffff;
+  padding-bottom: 2px;
+}
+
+/* Section Title Tweak */
+#vision-section .section-title {
+  margin-bottom: 50px;
+  font-family: 'Rajdhani', sans-serif; 
+  font-weight: bold;
+}
+/* Card & Vision container  */
+.analyzer-card, .vision-section {
+    /* Glassmorphism Effect */
+    background: rgba(15, 15, 25, 0.7) !important; /* dark background filter */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%); /* Safari support */
+    
+    /* soft border to keep the  contrast feel */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    /* deep shadow for depth */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    
+    transition: all 0.3s ease;
+}
+
+/* increase blur effect on mouse hover*/
+.analyzer-card:hover {
+    background: rgba(20, 20, 30, 0.85) !important;
+    transform: translateY(-5px);
+    border: 1px solid rgba(219, 78, 255, 0.4); 
+}
+
+/* Text visibility booster */
+.analyzer-desc {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* lime shadow behind text*/
+    color: #ffffff !important; 
+}
+
+/* ----------------------------
+   TEAM LAYOUT
+---------------------------- */
+/* ----------------------------
+   TEAM LAYOUT (COMPACT VERSION)
+---------------------------- */
+
+.team-leader-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+
+.team-leader-card {
+  max-width: 420px;
+  max-height: 200px;
+  text-align: center;
+}
+
+.team-leader-card h3 {
+  font-size: 1.25rem; /* was 1.4rem */
+  color: #ffd700;
+  margin-bottom: 3px;
+  text-shadow: 0 0 8px rgba(255,215,0,0.4);
+}
+
+.leader-role {
+  font-size: 0.8rem; /* was 1.1rem */
+  opacity: 0.9;
+  margin-bottom: 3px;
+}
+
+.leader-title {
+  font-size: 1rem; /* was 1.1rem */
+  color: #ffd700;
+  font-weight: 700;
+  text-shadow: 0 0 7px rgba(255,215,0,0.4);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px; /* slightly smaller */
+  max-width: 900px; /* was 1000px */
+  margin: 0 auto;
+}
+
+.team-member {
+  text-align: center;
+  padding: 24px 18px; /* reduced */
+}
+
+.team-member h3 {
+  font-size: 1.25rem; /* was 1.4rem */
+  color: #ffd700;
+  margin-bottom: 8px;
+  text-shadow: 0 0 7px rgba(255,215,0,0.4);
+}
+
+.team-member p {
+  font-size: 1rem; /* was 1.1rem */
+  opacity: 0.9;
+}
+
+
+/* ----------------------------
+   CONTACT FORM - PREMIUM GLASS
+---------------------------- */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(10, 17, 42, 0.4); /* Deep Space Blue Glass */
+  backdrop-filter: blur(30px) saturate(160%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 0, 255, 0.25);
+  padding: 45px 35px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+}
+
+/* Form Title */
+.form-container h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-align: center;
+  background: linear-gradient(90deg, #ff00ff, #42ffe6, #ffffff); /* Magenta + Neon Cyan + White */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Description */
+.form-container p {
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.92); /* Strong white for readability */
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Form Fields */
+.simple-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.simple-contact-form label {
+  display: block; /* Ye sabse important hai alignment ke liye */
+  text-align: left; 
+  width: 100%;
+  margin-bottom: 8px; /* Input aur label ke beech thoda gap */
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  /* Agar JetBrains Mono ya Montserrat use karna hai toh yahan add kar de */
+  font-family: 'Montserrat', sans-serif; 
+}
+
+.simple-contact-form input,
+.simple-contact-form textarea {
+  width: 100%;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.05); /* subtle glass effect */
+  border: 2px solid rgba(0, 255, 224, 0.25); /* Neon Cyan border */
+  border-radius: 15px;
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.simple-contact-form input::placeholder,
+.simple-contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.simple-contact-form input:focus,
+.simple-contact-form textarea:focus {
+  outline: none;
+  border-color: #42ffe6; /* Neon Cyan focus */
+  box-shadow: 0 0 20px rgba(66, 255, 230, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Submit Button */
+.submit-btn-simple {
+  background: linear-gradient(135deg, darkmagenta, #c800ff, #42ffe6);
+  color: white;
+  padding: 18px 35px;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 15px 30px rgba(255, 0, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.submit-btn-simple:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(255, 0, 255, 0.5);
+}
+
+.submit-btn-simple:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Form Status */
+.form-status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+/* Status Colors */
+.form-status.success {
+  background: rgba(34, 197, 94, 0.2);
+  border: 2px solid #22c55e;
+  color: #22c55e;
+}
+
+.form-status.error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+}
+
+.form-status.loading {
+  background: rgba(59, 130, 246, 0.2);
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+
+/* ----------------------------
+   PROFESSIONAL COSMIC FOOTER - CLEAN
+---------------------------- */
+.footer {
+  background: #08080d; /* Dark cosmic background */
+  padding: 90px 40px 40px; /* top/right+left/bottom */
+  font-family: 'Orbitron', monospace;
+  position: relative;
+  z-index: 10;
+  color: rgba(255,255,255,0.85);
+}
+
+/* GRID LAYOUT */
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 35px;
+  text-align: left;
+  border: none; /* removed any borders */
+}
+
+/* COLUMN TITLES - Neon + White combination */
+.footer-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #ff00ff, #42ffe6, #ffffff);
+  -webkit-background-clip: text;
+   font-family: 'JetBrains Mono', monospace;
+  -webkit-text-fill-color: transparent;
+}
+
+/* BRAND LOGO */
+.footer-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  box-shadow: 0 0 18px rgba(255, 0, 255, 0.4);
+}
+
+/* LINKS & TEXT */
+.footer-col p,
+.footer-col li,
+.footer-col a {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.5;
+ font-family: 'JetBrains Mono', monospace; 
+
+}
+
+
+.footer-col p, 
+.footer-quote {
+   font-family: 'JetBrains Mono', monospace !important;
+    
+   letter-spacing: -0.5px; /* Mono fonts thode wide hote hain, spacing kam karne se clean lagte hain */
+   line-height: 1.6;
+}
+
+.footer-heading {
+    /* Agar heading ko bhi wahi dena hai toh yahan add kar de */
+    font-family: 'Montserrat', sans-serif; /* Heading ke liye Montserrat behtar rahega contrast ke liye */
+    font-weight: 700;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+
+}
+
+.footer-col li {
+  margin: 8px 0;
+}
+
+.footer-col a {
+  text-decoration: none;
+  transition: 0.3s;
+  color: white !important;
+}
+
+.footer-col a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(66,255,230,0.6);
+}
+
+/* QUOTE BLOCK */
+.footer-quote {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  padding: 18px 24px;
+  margin-top: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  box-shadow: 0 0 22px rgba(255,0,255,0.15);
+}
+
+/* LEGAL LINKS */
+.footer-legal a {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-legal a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(66,255,230,0.5);
+}
+
+/* COPYRIGHT BAR */
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 18px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.footer p{
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* RESPONSIVE TWEAKS */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+  }
+  .footer-logo {
+    margin: 0 auto 12px auto;
+    display: block;
+  }
+  .footer-col {
+    text-align: center;
+  }
+}
+
+
+/* ----------------------------
+   RESPONSIVE
+---------------------------- */
+@media (max-width: 768px) {
+  .main-content { height: 800vh; }
+
+  .section-container,
+  .analyzer-card,
+  .team-leader-card,
+  .about-card {
+    padding: 30px 20px;
+    margin: 16px 0;
+  }
+
+  .analyzer-grid,
+  .about-cards-grid,
+  .team-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .footer-container {
+    padding: 20px;
+  }
+}
+
+
+/* Container - row layout */
+.cosmic-toggle {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 9999;
+  font-family: 'Orbitron', monospace;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* space between buttons */
+}
+
+/* Shared button styling */
+.toggle-btn,
+.auth-menu-btn {
+  background: rgba(20, 10, 40, 0.85);
+  border: 1px solid rgba(255, 0, 255, 0.25);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 6px rgba(255, 0, 255, 0.25);
+  white-space: nowrap;
+}
+
+.toggle-btn:hover,
+.auth-menu-btn:hover {
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.35);
+  background: rgba(20, 10, 40, 0.95);
+}
+
+/* Dropdown positioning */
+.menu-btn-wrapper {
+  position: relative; /* needed for dropdown */
+}
+
+.toggle-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: rgba(20, 10, 40, 0.95);
+  border: 1px solid rgba(255, 0, 255, 0.2);
+  border-radius: 12px;
+  padding: 8px 0;
+  width: 200px;
+  display: none;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.2);
+}
+
+.toggle-dropdown a {
+  display: block;
+  padding: 10px 18px;
+  color: #fff;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.toggle-dropdown a:hover {
+  color: #ff00ff;
+  background: rgba(255, 0, 255, 0.1);
+  transform: translateX(2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .cosmic-toggle {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+}
+/* Titles & Headings - Bold & Impactful */
+h1, 
+.section-container h1, 
+.feature-item h1, 
+.team-member h1, 
+.team-leader-card h1, 
+.about-card h1, 
+.footer-container h1, 
+.form-container h1 {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 800; /* Extra Bold for Titles */
+   letter-spacing: -0.5px; 
+   padding: 10px 2%; 
+   margin: 0;
+   text-transform: uppercase; 
+}
+
+/* Paragraphs and Description*/
+p, 
+.section-container p, 
+.feature-item p, 
+.team-member p, 
+.team-leader-card p, 
+.about-card p, 
+.footer-container p, 
+.form-container p {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 400; 
+   line-height: 1.6;
+   padding: 5px 2%;
+   color: #d1d1d1; 
+}
+/* Description */
+.analyzer-desc, 
+.analyzer-desc li {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400; 
+    font-size: 0.95rem; /* Standard size */
+    line-height: 1.6; 
+    color: #d1d1d1; 
+    list-style-type: none; 
+    padding: 0;
+    margin-bottom: 8px;
+    text-align: left; 
+}
+
+
+.analyzer-desc b {
+    font-weight: 700;
+    color: #db4eff;
+}
+
+
+.analyzer-desc li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 5px;
+}
+
+
+#videoHeroIcon.mb-4 {
+    margin-bottom: 0.5rem !important; 
+}
